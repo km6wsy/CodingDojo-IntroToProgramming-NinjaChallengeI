@@ -1,0 +1,63 @@
+<html>
+    <body>
+            <div id='background'>
+                    <div id='character' style='position:absolute; top:100px; left:450px; background-image: url("img/down1.png"); width:256px; height:419px;'></div>
+                </div>
+      <script>
+          
+          var character;
+          const topBoundry  = -180, bottomBoundary = 510,leftBoundry = -180, rightBoundry = 1600;
+          
+         
+
+
+          onpageshow =  function(){
+            character = document.getElementById("character");
+          };
+
+        
+          document.onkeydown = function(e){
+              console.log(e);
+              
+             limitingBoundry();
+              movementControl(e);
+          }
+          
+          function limitingBoundry(){
+               character.style.top = clamp(topBoundry,bottomBoundary,parseInt(character.style.top)); 
+               character.style.left = clamp(leftBoundry,rightBoundry,parseInt(character.style.left));
+          }
+          function clamp(min, max, value)
+          {
+              if (value >= max) {
+                  return max;
+              }
+              else if(value <= min){
+                  return min;
+              }
+              else{
+                  return value;
+              }
+          }
+
+          function movementControl(e){
+            if (e.keyCode == 38) {
+                    character.style.top = (parseInt(character.style.top) - 10) + "px";
+              }
+              //Move down
+              if (e.keyCode == 40) {
+                  character.style.top = (parseInt(character.style.top) + 10) + "px";
+              }
+              //Move left
+              if (e.keyCode == 37) {
+                  character.style.left = (parseInt(character.style.left) - 10) + "px";
+              }
+              //Move Right
+              if (e.keyCode == 39) {
+                character.style.left = (parseInt(character.style.left) + 10) + "px";
+              }
+          }
+        </script>  
+    </body>
+</html>
+
